@@ -59,14 +59,13 @@ public class Post_VideoController {
     String message = "";
     Post_Video newPost_Video = new Post_Video();
     try {
-      FileDB filedb = storageService.store(file);
-
+      
       message = "Uploaded the file successfully: " + file.getOriginalFilename();
       
         //SALVA POST_ GERA ID
         post_imagem.setHora(HoraServidor.HoraServidor());
         newPost_Video = vs.addPost_Video(post_imagem);
-        newPost_Video.setIdimagem(filedb.getId().toString());
+        newPost_Video.setIdimagem("");
         
         //Salva POST COM ID 
         Post post = new Post();
@@ -78,6 +77,8 @@ public class Post_VideoController {
         post.setTipo(post_imagem.getTipo());
         post.setIdperson(newPost_Video.getIdperson());
         Post newPost = vp.addPost(post);
+        
+        FileDB filedb = storageService.store(file, newPost_Video.getId().toString());
         
          URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(post_imagem.getId()).toUri();

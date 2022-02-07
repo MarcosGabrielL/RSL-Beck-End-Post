@@ -51,8 +51,8 @@ public class Post_ImagemController {
     }
    
         
-    //Add post Texto
-    @PostMapping("/imagem/add")
+    //Add post
+    @PostMapping("/postimagem/add")
     public ResponseEntity<Post_Imagem> addMovie( 
             @RequestBody Post_Imagem post_imagem,
                     @RequestParam("file") MultipartFile file) {
@@ -60,14 +60,10 @@ public class Post_ImagemController {
     String message = "";
     Post_Imagem newPost_Imagem = new Post_Imagem();
     try {
-      FileDB filedb = storageService.store(file);
-
-      message = "Uploaded the file successfully: " + file.getOriginalFilename();
-      
         //SALVA POST_ GERA ID
         post_imagem.setHora(HoraServidor.HoraServidor());
         newPost_Imagem = vs.addPost_Imagem(post_imagem);
-        newPost_Imagem.setIdimagem(filedb.getId().toString());
+        newPost_Imagem.setIdimagem("5");
         
         //Salva POST COM ID 
         Post post = new Post();
@@ -80,6 +76,10 @@ public class Post_ImagemController {
         post.setIdperson(newPost_Imagem.getIdperson());
         Post newPost = vp.addPost(post);
         
+        FileDB filedb = storageService.store(file, newPost_Imagem.getId().toString());
+
+      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+        
          URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(post_imagem.getId()).toUri();
          
@@ -87,6 +87,31 @@ public class Post_ImagemController {
     } catch (Exception e) {
       message = "Could not upload the file: " + file.getOriginalFilename() + "! "+e.getLocalizedMessage();
       return new ResponseEntity<>(newPost_Imagem, HttpStatus.EXPECTATION_FAILED);
+    }
+          
+    }
+    
+    //Add files
+     @PostMapping("/imagem/add/{idpost}")
+    public ResponseEntity<FileDB> addImage( @RequestParam("file") MultipartFile file,
+            @PathVariable("idpost") String idpost) {
+        
+        FileDB filedb = new FileDB();
+        
+    String message = "";
+    try {
+       
+        filedb = storageService.store(file, idpost);
+
+      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+        
+         URI uri = ServletUriComponentsBuilder.
+                fromCurrentRequest().path("/post/{id}").buildAndExpand(idpost).toUri();
+         
+         return new ResponseEntity<>(filedb, HttpStatus.CREATED);
+    } catch (Exception e) {
+      message = "Could not upload the file: " + file.getOriginalFilename() + "! "+e.getLocalizedMessage();
+      return new ResponseEntity<>(filedb, HttpStatus.EXPECTATION_FAILED);
     }
           
     }

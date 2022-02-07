@@ -23,6 +23,8 @@ public class FileDB {
     private Long id;
 
   private String name;
+  
+   private String idpost;
 
   private String type;
 
@@ -32,10 +34,11 @@ public class FileDB {
   public FileDB() {
   }
 
-  public FileDB(String name, String type, byte[] data) {
+  public FileDB(String name, String type, byte[] data, String idpost) {
     this.name = name;
     this.type = type;
     this.data = data;
+    this.idpost = idpost;
   }
 
   public Long getId() {
@@ -66,4 +69,14 @@ public class FileDB {
     this.data = data;
   }
 
+    public String getIdpost() {
+        return idpost;
+    }
+
+    public void setIdpost(String idpost) {
+        this.idpost = idpost;
+    }
+
+  
+  
 }

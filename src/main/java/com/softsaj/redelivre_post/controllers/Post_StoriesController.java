@@ -57,14 +57,13 @@ public class Post_StoriesController {
     String message = "";
     Post_Stories newPost_Stories = new Post_Stories();
     try {
-      FileDB filedb = storageService.store(file);
 
       message = "Uploaded the file successfully: " + file.getOriginalFilename();
       
         //SALVA POST_ GERA ID
         post_imagem.setHora(HoraServidor.HoraServidor());
         newPost_Stories = vs.addPost_Stories(post_imagem);
-        newPost_Stories.setIdimagem(filedb.getId().toString());
+        newPost_Stories.setIdimagem("");
         
         //Salva POST COM ID 
         Post post = new Post();
@@ -76,6 +75,8 @@ public class Post_StoriesController {
         post.setTipo(post_imagem.getTipo());
         post.setIdperson(newPost_Stories.getIdperson());
         Post newPost = vp.addPost(post);
+        
+        FileDB filedb = storageService.store(file, newPost_Stories.getId().toString());
         
          URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(post_imagem.getId()).toUri();

@@ -58,14 +58,14 @@ public class Post_ReelController {
     String message = "";
     Post_Reel newPost_Reel = new Post_Reel();
     try {
-      FileDB filedb = storageService.store(file);
+      
 
       message = "Uploaded the file successfully: " + file.getOriginalFilename();
       
         //SALVA POST_ GERA ID
         post_imagem.setHora(HoraServidor.HoraServidor());
         newPost_Reel = vs.addPost_Reel(post_imagem);
-        newPost_Reel.setIdimagem(filedb.getId().toString());
+        newPost_Reel.setIdimagem("");
         
         //Salva POST COM ID 
         Post post = new Post();
@@ -77,6 +77,8 @@ public class Post_ReelController {
         post.setTipo(post_imagem.getTipo());
         post.setIdperson(newPost_Reel.getIdperson());
         Post newPost = vp.addPost(post);
+        
+        FileDB filedb = storageService.store(file, newPost_Reel.getId().toString());
         
          URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(post_imagem.getId()).toUri();
