@@ -93,9 +93,9 @@ public class Post_ImagemController {
     String message = "";
     try {
        
-        filedb = storageService.store(file, idpost);
+        filedb = storageService.store(file.getData(), idpost);
 
-      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+      message = "Uploaded the file successfully ";
         
          URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(idpost).toUri();
