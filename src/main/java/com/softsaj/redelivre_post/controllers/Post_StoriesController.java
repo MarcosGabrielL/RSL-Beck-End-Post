@@ -52,7 +52,7 @@ public class Post_StoriesController {
      @PostMapping("/storie/add")
     public ResponseEntity<Post_Stories> addMovie( 
             @RequestBody Post_Stories post_imagem,
-                   @RequestBody FileDB file {
+                   @RequestBody FileDB file) {
         
     String message = "";
     Post_Stories newPost_Stories = new Post_Stories();

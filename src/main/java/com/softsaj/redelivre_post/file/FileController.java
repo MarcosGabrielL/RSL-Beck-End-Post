@@ -35,7 +35,7 @@ public class FileController {
   private FileStorageService storageService;
 
   @PostMapping("/upload")
-  public ResponseEntity<ResponseMessage> uploadFile(@RequestBody FileDB file,) {
+  public ResponseEntity<ResponseMessage> uploadFile(@RequestBody FileDB file) {
     String message = "";
     try {
       storageService.store(file, message);
