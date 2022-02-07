@@ -54,12 +54,11 @@ public class Post_ImagemController {
     //Add post
     @PostMapping("/postimagem/add")
     public ResponseEntity<Post_Imagem> addMovie( 
-            @RequestBody Post_Imagem post_imagem,
-                    @RequestParam("file") MultipartFile file) {
+            @RequestBody Post_Imagem post_imagem) {
         
     String message = "";
     Post_Imagem newPost_Imagem = new Post_Imagem();
-    try {
+
         //SALVA POST_ GERA ID
         post_imagem.setHora(HoraServidor.HoraServidor());
         newPost_Imagem = vs.addPost_Imagem(post_imagem);
@@ -76,16 +75,12 @@ public class Post_ImagemController {
         post.setIdperson(newPost_Imagem.getIdperson());
         Post newPost = vp.addPost(post);
         
-        FileDB filedb = storageService.store(file, newPost_Imagem.getId().toString());
-
-      message = "Uploaded the file successfully: " + file.getOriginalFilename();
-        
          URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(post_imagem.getId()).toUri();
          
          return new ResponseEntity<>(newPost_Imagem, HttpStatus.CREATED);
     } catch (Exception e) {
-      message = "Could not upload the file: " + file.getOriginalFilename() + "! "+e.getLocalizedMessage();
+      
       return new ResponseEntity<>(newPost_Imagem, HttpStatus.EXPECTATION_FAILED);
     }
           
