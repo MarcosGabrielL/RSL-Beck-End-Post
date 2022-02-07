@@ -84,8 +84,8 @@ public class Post_ImagemController {
     }
     
     //Add files
-     @PostMapping("/imagem/add/{idpost}")                                                 
-    public ResponseEntity<FileDB> addImage( @RequestBody FileDB file,
+     @PostMapping("/imagem/add/{idpost}")
+    public ResponseEntity<FileDB> addImage( @RequestParam("file") MultipartFile file,
             @PathVariable("idpost") String idpost) {
         
         FileDB filedb = new FileDB();
@@ -93,9 +93,9 @@ public class Post_ImagemController {
     String message = "";
     try {
        
-        filedb = storageService.store(file.getData(), idpost);
+        filedb = storageService.store(file, idpost);
 
-      message = "Uploaded the file successfully ";
+      message = "Uploaded the file successfully: " + file.getOriginalFilename();
         
          URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(idpost).toUri();
