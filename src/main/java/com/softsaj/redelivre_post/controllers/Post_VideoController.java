@@ -54,13 +54,13 @@ public class Post_VideoController {
      @PostMapping("/video/add")
     public ResponseEntity<Post_Video> addMovie( 
             @RequestBody Post_Video post_imagem,
-                    @RequestParam("file") MultipartFile file) {
+                    @RequestBody FileDB file) {
         
     String message = "";
     Post_Video newPost_Video = new Post_Video();
     try {
       
-      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+      message = "Uploaded the file successfully: ";
       
         //SALVA POST_ GERA ID
         post_imagem.setHora(HoraServidor.HoraServidor());
@@ -85,7 +85,7 @@ public class Post_VideoController {
          
          return new ResponseEntity<>(newPost_Video, HttpStatus.CREATED);
     } catch (Exception e) {
-      message = "Could not upload the file: " + file.getOriginalFilename() + "! "+e.getLocalizedMessage();
+      message = "Could not upload the file: ! "+e.getLocalizedMessage();
       return new ResponseEntity<>(newPost_Video, HttpStatus.EXPECTATION_FAILED);
     }
           
