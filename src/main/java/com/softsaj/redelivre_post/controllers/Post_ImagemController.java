@@ -79,10 +79,7 @@ public class Post_ImagemController {
                 fromCurrentRequest().path("/post/{id}").buildAndExpand(post_imagem.getId()).toUri();
          
          return new ResponseEntity<>(newPost_Imagem, HttpStatus.CREATED);
-    } catch (Exception e) {
-      
-      return new ResponseEntity<>(newPost_Imagem, HttpStatus.EXPECTATION_FAILED);
-    }
+   
           
     }
     
