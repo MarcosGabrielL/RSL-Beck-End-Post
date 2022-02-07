@@ -21,7 +21,7 @@ public class Post_Imagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
      
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String idperson;
      
     @Column(nullable = false)
@@ -30,7 +30,7 @@ public class Post_Imagem {
     @Column(nullable = false)
     private String idimagem;
     
-     @Column(nullable = false, unique = true, length = 45)
+     @Column(nullable = false, unique = false, length = 45)
     private String email;
      
     /*1 - Texto
