@@ -84,10 +84,10 @@ public class Post_ImagemController {
     }
     
     //Add files
+	@Multipart
      @PostMapping("/imagem/add/{idpost}")
-    @ResponseBody
     public ResponseEntity<ResponseMessage> addImage(
-        @RequestPart(name = "file", required = false) MultipartFile file,
+         @Part MultipartBody.Part file,
             @PathVariable("idpost") String idpost) {
         
         FileDB filedb = new FileDB();
