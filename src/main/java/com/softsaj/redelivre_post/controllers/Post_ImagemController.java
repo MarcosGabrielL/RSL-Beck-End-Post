@@ -95,19 +95,18 @@ public class Post_ImagemController {
     String message = "";
     try {
        
-        filedb = storageService.store(file, idpost);
+       // filedb = storageService.store(file, idpost);
 
         
-         URI uri = ServletUriComponentsBuilder.
-                fromCurrentRequest().path("/file/{id}").buildAndExpand(idpost).toUri();
+      //   URI uri = ServletUriComponentsBuilder.
+        //        fromCurrentRequest().path("/file/{id}").buildAndExpand(idpost).toUri();
          
-         message = "Uploaded the file successfully: " + file.getOriginalFilename();
+         message = "Uploaded the file successfully: ";
       return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
       
     } catch (Exception e) {
-      message = "Could not upload the file: ! "+e.getLocalizedMessage();
+      message = "Could not upload the file: ! ";
      
-      message = "Could not upload the file: " + file.getOriginalFilename() + "! "+e.getLocalizedMessage();
       return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
     }
           
