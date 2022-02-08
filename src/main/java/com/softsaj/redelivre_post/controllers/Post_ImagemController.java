@@ -94,7 +94,9 @@ public class Post_ImagemController {
         
     String message = "";
     try {
-       
+
+	System.out.println("File: " + file);       
+
        // filedb = storageService.store(file, idpost);
 
         
