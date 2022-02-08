@@ -85,7 +85,7 @@ public class Post_ImagemController {
     
     //Add files
      @PostMapping("/imagem/add/{idpost}")
-    public ResponseEntity<FileDB> addImage(
+    public ResponseEntity<ResponseMessage> addImage(
         @RequestParam("file") MultipartFile file,
         @RequestParam("body") String team,
             @PathVariable("idpost") String idpost) {
@@ -97,15 +97,18 @@ public class Post_ImagemController {
        
         filedb = storageService.store(file, idpost);
 
-      message = "Uploaded the file successfully: ";
         
          URI uri = ServletUriComponentsBuilder.
-                fromCurrentRequest().path("/post/{id}").buildAndExpand(idpost).toUri();
+                fromCurrentRequest().path("/file/{id}").buildAndExpand(idpost).toUri();
          
-         return new ResponseEntity<>(filedb, HttpStatus.CREATED);
+         message = "Uploaded the file successfully: " + file.getOriginalFilename();
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+      
     } catch (Exception e) {
       message = "Could not upload the file: ! "+e.getLocalizedMessage();
-      return new ResponseEntity<>(filedb, HttpStatus.EXPECTATION_FAILED);
+     
+      message = "Could not upload the file: " + file.getOriginalFilename() + "! "+e.getLocalizedMessage();
+      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
     }
           
     }
