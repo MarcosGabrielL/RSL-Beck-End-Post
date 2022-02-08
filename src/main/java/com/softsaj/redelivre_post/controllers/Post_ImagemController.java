@@ -85,6 +85,7 @@ public class Post_ImagemController {
     
     //Add files
      @PostMapping("/imagem/add/{idpost}")
+    @ResponseBody
     public ResponseEntity<ResponseMessage> addImage(
         @RequestParam("file") MultipartFile file,
         @RequestParam("body") String team,
