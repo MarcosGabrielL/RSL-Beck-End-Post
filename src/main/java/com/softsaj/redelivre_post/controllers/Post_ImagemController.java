@@ -98,8 +98,8 @@ public class Post_ImagemController {
         filedb = storageService.store(file, idpost);
 
         
-         URI uri = ServletUriComponentsBuilder.
-                fromCurrentRequest().path("/file/{id}").buildAndExpand(idpost).toUri();
+        // URI uri = ServletUriComponentsBuilder.
+              //  fromCurrentRequest().path("/file/{id}").buildAndExpand(idpost).toUri();
          
          message = "Uploaded the file successfully: ";
       return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
