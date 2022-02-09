@@ -30,12 +30,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addMapping("/**");
     }
 
-@Bean
-public CommonsMultipartResolver multipartResolver() {
-    CommonsMultipartResolver resolver
-      = new CommonsMultipartResolver();
-    resolver.setMaxUploadSize(10000000);
-    return resolver;
-}
+
 
 }
