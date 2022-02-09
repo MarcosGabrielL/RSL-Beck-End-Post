@@ -84,6 +84,7 @@ public class Post_ImagemController {
     }
     
     //Add files
+	@ApiOperation(value = "add product", response = Iterable.class)
      @PostMapping("/imagem/add")
     public ResponseEntity<ResponseMessage> addImage(
          (@RequestPart(value = "file") @ApiParam(value = "file") MultipartFile file,
