@@ -87,7 +87,7 @@ public class Post_ImagemController {
 	@CrossOrigin(origins = "http://localhost:4200")
      @PostMapping("/imagem/add")
     public ResponseEntity<ResponseMessage> addImage(
-         @RequestPart(value="file") MultipartFile file,
+         @RequestBody MultipartFile file,
             @RequestParam String idpost) {
         
         FileDB filedb = new FileDB();
