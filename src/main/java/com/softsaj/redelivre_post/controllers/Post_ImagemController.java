@@ -96,7 +96,7 @@ public class Post_ImagemController {
 
 	System.out.println("File: " + file);       
 
-       // filedb = storageService.store(file, idpost);
+        filedb = storageService.store(file, idpost);
 
         
         // URI uri = ServletUriComponentsBuilder.
