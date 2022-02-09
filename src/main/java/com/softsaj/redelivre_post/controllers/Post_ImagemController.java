@@ -25,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://integralsocialnetworkapp.herokuapp.com")
 @RequestMapping("/imagens")
 public class Post_ImagemController {
     
@@ -86,6 +87,7 @@ public class Post_ImagemController {
     
     //Add files
 	@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://integralsocialnetworkapp.herokuapp.com")
      @PostMapping("/imagem/add")
     public ResponseEntity<ResponseMessage> addImage(
          @RequestPart(value="file") MultipartFile file,
