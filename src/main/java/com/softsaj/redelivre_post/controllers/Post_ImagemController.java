@@ -85,6 +85,7 @@ public class Post_ImagemController {
     }
     
     //Add files
+	@CrossOrigin(origins = "http://localhost:4200")
      @PostMapping("/imagem/add")
     public ResponseEntity<ResponseMessage> addImage(
          @RequestPart(value="file") MultipartFile file,
