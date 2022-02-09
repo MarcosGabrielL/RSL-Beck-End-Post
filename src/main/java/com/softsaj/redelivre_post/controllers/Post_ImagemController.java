@@ -17,9 +17,6 @@ import java.net.URI;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -87,10 +84,11 @@ public class Post_ImagemController {
     }
     
     //Add files
-     @PostMapping("/imagem/add")
+     @PostMapping(value="/imagem/add", headers = "Content-Type= multipart/form-data", method = RequestMethod.POST)
+     @ResponseBody
     public ResponseEntity<ResponseMessage> addImage
-         (@RequestParam(value = "file")   @ApiParam(value = "file") byte[] file,
-           @RequestParam(value = "idpost")  @ApiParam(value = "idpost")  String idpost) {
+         (@RequestParam(value = "file", required = false)   MultipartFile file,
+           @RequestParam(value = "idpost") String idpost) {
         
         FileDB filedb = new FileDB();
         
@@ -99,7 +97,7 @@ public class Post_ImagemController {
 
 	System.out.println("File: " + file);       
 
-        //filedb = storageService.store(file, idpost);
+        filedb = storageService.store(file, idpost);
 
         
         // URI uri = ServletUriComponentsBuilder.
