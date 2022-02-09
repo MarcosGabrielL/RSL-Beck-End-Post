@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/imagens")
 public class Post_ImagemController {
     
@@ -87,7 +88,8 @@ public class Post_ImagemController {
 	@CrossOrigin(origins = "http://localhost:4200")
      @PostMapping("/imagem/add")
     public ResponseEntity<ResponseMessage> addImage(
-         @RequestBody MultipartFile file) {
+         @RequestPart(value="file") MultipartFile file,
+            @RequestParam String idpost) {
         
         FileDB filedb = new FileDB();
         
@@ -96,7 +98,7 @@ public class Post_ImagemController {
 
 	System.out.println("File: " + file);       
 
-        filedb = storageService.store(file, "5");
+        filedb = storageService.store(file, idpost);
 
         
         // URI uri = ServletUriComponentsBuilder.
