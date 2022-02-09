@@ -23,7 +23,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-@RestController
+@Controller
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/imagens")
 public class Post_ImagemController {
     
