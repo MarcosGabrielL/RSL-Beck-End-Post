@@ -22,10 +22,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.stereotype.Controller;
 
-@Controller
-@CrossOrigin("http://localhost:4200")
+@RestController
 @RequestMapping("/imagens")
 public class Post_ImagemController {
     
@@ -88,8 +86,8 @@ public class Post_ImagemController {
     //Add files
      @PostMapping("/imagem/add")
     public ResponseEntity<ResponseMessage> addImage(
-         @RequestPart("file") MultipartFile file,
-            @RequestPart("idpost") String idpost) {
+         @RequestParam("file") MultipartFile file,
+            @RequestParam("idpost") String idpost) {
         
         FileDB filedb = new FileDB();
         
