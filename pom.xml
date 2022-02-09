@@ -135,10 +135,10 @@
         		<version>5.5.2</version>
     		</dependency>
     		<dependency>
-    <groupId>io.swagger.core.v3</groupId>
-    <artifactId>swagger-annotations</artifactId>
-    <version>2.1.11</version>
-</dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.21</version>
+            </dependency>
 	</dependencies>
 
 	<build>
