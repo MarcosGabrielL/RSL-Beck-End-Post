@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/imagens")
 public class Post_ImagemController {
     
