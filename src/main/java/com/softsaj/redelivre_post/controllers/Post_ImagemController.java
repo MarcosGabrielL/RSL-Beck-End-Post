@@ -87,7 +87,7 @@ public class Post_ImagemController {
      @PostMapping(value="/imagem/add", headers = "Content-Type= multipart/form-data")
      @ResponseBody
     public ResponseEntity<ResponseMessage> addImage
-         (@RequestPart(value = "file", required = false)   MultipartFile file,
+         (@RequestParam(value = "file", required = false)   MultipartFile file,
            @RequestParam(value = "idpost") String idpost) {
         
         FileDB filedb = new FileDB();
