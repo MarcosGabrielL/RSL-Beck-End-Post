@@ -87,8 +87,7 @@ public class Post_ImagemController {
 	@CrossOrigin(origins = "http://localhost:4200")
      @PostMapping("/imagem/add")
     public ResponseEntity<ResponseMessage> addImage(
-         @RequestBody MultipartFile file,
-            @RequestParam String idpost) {
+         @RequestBody MultipartFile file) {
         
         FileDB filedb = new FileDB();
         
@@ -97,7 +96,7 @@ public class Post_ImagemController {
 
 	System.out.println("File: " + file);       
 
-        filedb = storageService.store(file, idpost);
+        filedb = storageService.store(file, "5");
 
         
         // URI uri = ServletUriComponentsBuilder.
